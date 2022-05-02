@@ -4,14 +4,16 @@ import { AppService } from './app.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { CatsModule } from './cats/cats.module';
 import { DogsModule } from './dogs/dogs.module';
-import { UsersModule } from './users/users.module';
+import { UserModule } from './user/user.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
     MongooseModule.forRoot('mongodb://localhost/gotomap'),
     CatsModule,
     DogsModule,
-    UsersModule,
+    UserModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
