@@ -17,7 +17,7 @@ export class CatsService {
   }
 
   async create(catsData: CreateCatDto) {
-    let latestId = await this.catModel.findOne();
+    const latestId = await this.catModel.findOne();
     return await this.catModel.create({
       ...catsData,
       id: parseInt(latestId ? latestId.id : 0) + 1,
