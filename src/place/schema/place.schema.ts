@@ -25,6 +25,12 @@ export class Place {
   description: string;
 
   @Prop()
+  imageURL: string;
+
+  @Prop()
+  category: string;
+
+  @Prop()
   phone: string;
 
   @Prop()

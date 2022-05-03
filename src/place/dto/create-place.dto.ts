@@ -17,6 +17,10 @@ export class CreatePlaceDto {
   @IsString()
   readonly description: string;
   @IsString()
+  readonly imageURL: string;
+  @IsString()
+  readonly category: string;
+  @IsString()
   readonly phone: string;
   @IsString()
   readonly fullAddress: string;
