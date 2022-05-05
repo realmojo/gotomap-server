@@ -3,6 +3,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Place, PlaceDocument } from './schema/place.schema';
 import { CreatePlaceDto } from './dto/create-place.dto';
+import { PLACE_STATUS } from './schema/constants';
 
 @Injectable()
 export class PlaceService {
@@ -27,13 +28,33 @@ export class PlaceService {
   }
 
   async getPlaces(userId: string): Promise<Place[] | undefined> {
-    return await this.placeModel.find({ userId });
+    return await this.placeModel.find({ userId }).sort({ regdate: -1 });
   }
 
-  async removePlace(
-    placeId: string,
+  async getPlaceCount(
     userId: string,
+  ): Promise<{ totalCount: number; doneCount: number; backlogCount: number }> {
+    const places = await this.placeModel.find({ userId });
+    const doneCount = places.filter(
+      (place) => place.status === PLACE_STATUS.DONE,
+    ).length;
+
+    return {
+      totalCount: places.length,
+      doneCount,
+      backlogCount: places.length - doneCount,
+    };
+  }
+
+  async updatePlaceStatus(
+    filter: { _id: string; userId: string },
+    status: PLACE_STATUS,
   ): Promise<Place | undefined> {
-    return await this.placeModel.findOneAndRemove({ placeId, userId });
+    const set = { $set: { status } };
+    return await this.placeModel.findOneAndUpdate(filter, set, { new: true });
+  }
+
+  async removePlace(_id: string): Promise<Place | undefined> {
+    return await this.placeModel.findByIdAndDelete({ _id });
   }
 }
