@@ -14,17 +14,17 @@ import { Place } from './schema/place.schema';
 export class PlaceController {
   constructor(private readonly placeService: PlaceService) {}
 
-  @Get(':_id')
-  async getPlace(@Request() req): Promise<Place | undefined> {
-    const { _id } = req.params;
-    return await this.placeService.getPlace(_id);
-  }
-
   @Get('all')
   async getPlaces(@Request() req): Promise<Place[] | undefined> {
     const { userId } = req.query;
     console.log(userId);
     return await this.placeService.getPlaces(userId);
+  }
+
+  @Get(':_id')
+  async getPlace(@Request() req): Promise<Place | undefined> {
+    const { _id } = req.params;
+    return await this.placeService.getPlace(_id);
   }
 
   @Get('allCount')
@@ -62,6 +62,7 @@ export class PlaceController {
       _id,
       userId,
     };
+    console.log(_id, status);
     return await this.placeService.updatePlaceStatus(filter, status);
   }
 }

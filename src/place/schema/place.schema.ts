@@ -39,8 +39,20 @@ export class Place {
   @Prop()
   fullRoadAddress: string;
 
-  // @Prop()
-  // info: object;
+  @Prop()
+  options: string;
+
+  @Prop()
+  keywords: string;
+
+  @Prop()
+  openHour: string;
+
+  @Prop()
+  closeHour: string;
+
+  @Prop()
+  memo: string;
 
   @Prop()
   status: PLACE_STATUS;
