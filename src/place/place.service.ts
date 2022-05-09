@@ -11,6 +11,10 @@ export class PlaceService {
     @InjectModel(Place.name) private placeModel: Model<PlaceDocument>,
   ) {}
 
+  async getPlace(_id: string): Promise<Place | undefined> {
+    return await this.placeModel.findById({ _id });
+  }
+
   async findOne(placeId: string, userId: string): Promise<Place | undefined> {
     return await this.placeModel.findOne({ placeId, userId });
   }
