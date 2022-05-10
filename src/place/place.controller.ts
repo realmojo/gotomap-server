@@ -6,6 +6,7 @@ import {
   Request,
   Get,
   Patch,
+  Query,
 } from '@nestjs/common';
 import { PlaceService } from './place.service';
 import { Place } from './schema/place.schema';
@@ -17,14 +18,7 @@ export class PlaceController {
   @Get('all')
   async getPlaces(@Request() req): Promise<Place[] | undefined> {
     const { userId } = req.query;
-    console.log(userId);
     return await this.placeService.getPlaces(userId);
-  }
-
-  @Get(':_id')
-  async getPlace(@Request() req): Promise<Place | undefined> {
-    const { _id } = req.params;
-    return await this.placeService.getPlace(_id);
   }
 
   @Get('allCount')
@@ -43,6 +37,12 @@ export class PlaceController {
     };
   }
 
+  @Get(':_id')
+  async getPlace(@Request() req): Promise<Place | undefined> {
+    const { _id } = req.params;
+    return await this.placeService.getPlace(_id);
+  }
+
   @Post()
   async addPlace(@Body() req): Promise<Place | undefined> {
     return await this.placeService.addPlace(req);
@@ -51,7 +51,6 @@ export class PlaceController {
   @Delete(':_id')
   async removePlace(@Request() req): Promise<Place | undefined> {
     const { _id } = req.params;
-    console.log('place delete: ', _id);
     return await this.placeService.removePlace(_id);
   }
 
@@ -63,23 +62,22 @@ export class PlaceController {
       _id,
       userId,
     };
-    console.log(_id, status);
     return await this.placeService.updatePlaceStatus(filter, status);
   }
 
-  @Patch(':_id/:userId/memo')
+  @Patch(':_id/memo')
   async updatePlaceMemo(
     @Request() req,
     @Body() body,
+    @Query() query,
   ): Promise<Place | undefined> {
-    const { _id, userId } = req.params;
+    const { _id } = req.params;
     const { memo } = body;
-    // const { userId } = req.query;
+    const { userId } = query;
     const filter = {
       _id,
       userId,
     };
-    console.log(_id, memo);
     return await this.placeService.updatePlaceMemo(filter, memo);
   }
 }
