@@ -51,6 +51,7 @@ export class PlaceController {
   @Delete(':_id')
   async removePlace(@Request() req): Promise<Place | undefined> {
     const { _id } = req.params;
+    console.log('place delete: ', _id);
     return await this.placeService.removePlace(_id);
   }
 
@@ -64,5 +65,21 @@ export class PlaceController {
     };
     console.log(_id, status);
     return await this.placeService.updatePlaceStatus(filter, status);
+  }
+
+  @Patch(':_id/:userId/memo')
+  async updatePlaceMemo(
+    @Request() req,
+    @Body() body,
+  ): Promise<Place | undefined> {
+    const { _id, userId } = req.params;
+    const { memo } = body;
+    // const { userId } = req.query;
+    const filter = {
+      _id,
+      userId,
+    };
+    console.log(_id, memo);
+    return await this.placeService.updatePlaceMemo(filter, memo);
   }
 }

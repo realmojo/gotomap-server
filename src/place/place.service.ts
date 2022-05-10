@@ -58,6 +58,14 @@ export class PlaceService {
     return await this.placeModel.findOneAndUpdate(filter, set, { new: true });
   }
 
+  async updatePlaceMemo(
+    filter: { _id: string; userId: string },
+    memo: string,
+  ): Promise<Place | undefined> {
+    const set = { $set: { memo } };
+    return await this.placeModel.findOneAndUpdate(filter, set, { new: true });
+  }
+
   async removePlace(_id: string): Promise<Place | undefined> {
     return await this.placeModel.findByIdAndDelete({ _id });
   }
