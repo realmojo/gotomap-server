@@ -46,10 +46,7 @@ export class Place {
   keywords: string;
 
   @Prop()
-  openHour: string;
-
-  @Prop()
-  closeHour: string;
+  bizhourInfo: string;
 
   @Prop()
   memo: string;
