@@ -9,7 +9,9 @@ import { MapController } from './map/map.controller';
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://localhost/gotomap'),
+    MongooseModule.forRoot(
+      process.env.mongodbURL || 'mongodb://localhost/gotomap',
+    ),
     UserModule,
     AuthModule,
     PlaceModule,
