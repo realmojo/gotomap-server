@@ -15,6 +15,13 @@ export class PlaceService {
     return await this.placeModel.findById({ _id });
   }
 
+  async getPlaces(cond: {
+    userId: string;
+    status: string;
+  }): Promise<Place[] | undefined> {
+    return await this.placeModel.find(cond).sort({ regdate: -1 });
+  }
+
   async findOne(placeId: string, userId: string): Promise<Place | undefined> {
     return await this.placeModel.findOne({ placeId, userId });
   }
@@ -30,11 +37,6 @@ export class PlaceService {
     const createPlace = new this.placeModel(createPlaceDto);
     return createPlace.save();
   }
-
-  async getPlaces(userId: string): Promise<Place[] | undefined> {
-    return await this.placeModel.find({ userId }).sort({ regdate: -1 });
-  }
-
   async getPlaceCount(
     userId: string,
   ): Promise<{ totalCount: number; doneCount: number; backlogCount: number }> {

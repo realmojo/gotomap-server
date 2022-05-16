@@ -3,7 +3,7 @@ import { Place } from './schema/place.schema';
 export declare class PlaceController {
     private readonly placeService;
     constructor(placeService: PlaceService);
-    getPlaces(req: any): Promise<Place[] | undefined>;
+    getPlaces(req: any, param: any): Promise<Place[] | undefined>;
     getPlaceCount(req: any): Promise<{
         totalCount: number;
         doneCount: number;

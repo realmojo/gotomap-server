@@ -24,6 +24,9 @@ let PlaceService = class PlaceService {
     async getPlace(_id) {
         return await this.placeModel.findById({ _id });
     }
+    async getPlaces(cond) {
+        return await this.placeModel.find(cond).sort({ regdate: -1 });
+    }
     async findOne(placeId, userId) {
         return await this.placeModel.findOne({ placeId, userId });
     }
@@ -34,9 +37,6 @@ let PlaceService = class PlaceService {
         }
         const createPlace = new this.placeModel(createPlaceDto);
         return createPlace.save();
-    }
-    async getPlaces(userId) {
-        return await this.placeModel.find({ userId }).sort({ regdate: -1 });
     }
     async getPlaceCount(userId) {
         const places = await this.placeModel.find({ userId });

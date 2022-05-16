@@ -19,9 +19,15 @@ let PlaceController = class PlaceController {
     constructor(placeService) {
         this.placeService = placeService;
     }
-    async getPlaces(req) {
+    async getPlaces(req, param) {
         const { userId } = req.query;
-        return await this.placeService.getPlaces(userId);
+        const { status } = param;
+        const cond = {
+            userId,
+            status,
+        };
+        console.log(cond);
+        return await this.placeService.getPlaces(cond);
     }
     async getPlaceCount(req) {
         const { userId } = req.query;
@@ -64,10 +70,11 @@ let PlaceController = class PlaceController {
     }
 };
 __decorate([
-    (0, common_1.Get)('all'),
+    (0, common_1.Get)('all/:status'),
     __param(0, (0, common_1.Request)()),
+    __param(1, (0, common_1.Param)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
+    __metadata("design:paramtypes", [Object, Object]),
     __metadata("design:returntype", Promise)
 ], PlaceController.prototype, "getPlaces", null);
 __decorate([

@@ -7,6 +7,7 @@ import {
   Get,
   Patch,
   Query,
+  Param,
 } from '@nestjs/common';
 import { PlaceService } from './place.service';
 import { Place } from './schema/place.schema';
@@ -15,10 +16,19 @@ import { Place } from './schema/place.schema';
 export class PlaceController {
   constructor(private readonly placeService: PlaceService) {}
 
-  @Get('all')
-  async getPlaces(@Request() req): Promise<Place[] | undefined> {
+  @Get('all/:status')
+  async getPlaces(
+    @Request() req,
+    @Param() param,
+  ): Promise<Place[] | undefined> {
     const { userId } = req.query;
-    return await this.placeService.getPlaces(userId);
+    const { status } = param;
+    const cond = {
+      userId,
+      status,
+    };
+    console.log(cond);
+    return await this.placeService.getPlaces(cond);
   }
 
   @Get('allCount')
