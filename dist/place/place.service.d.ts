@@ -6,7 +6,8 @@ export declare class PlaceService {
     private placeModel;
     constructor(placeModel: Model<PlaceDocument>);
     getPlace(_id: string): Promise<Place | undefined>;
-    getPlaces(cond: {
+    getPlaces(userId: string): Promise<Place[] | undefined>;
+    getPlacesByStatus(cond: {
         userId: string;
         status: string;
     }): Promise<Place[] | undefined>;

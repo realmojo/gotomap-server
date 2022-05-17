@@ -24,7 +24,10 @@ let PlaceService = class PlaceService {
     async getPlace(_id) {
         return await this.placeModel.findById({ _id });
     }
-    async getPlaces(cond) {
+    async getPlaces(userId) {
+        return await this.placeModel.find({ userId }).sort({ regdate: -1 });
+    }
+    async getPlacesByStatus(cond) {
         return await this.placeModel.find(cond).sort({ regdate: -1 });
     }
     async findOne(placeId, userId) {

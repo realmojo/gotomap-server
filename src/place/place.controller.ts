@@ -17,7 +17,7 @@ export class PlaceController {
   constructor(private readonly placeService: PlaceService) {}
 
   @Get('all/:status')
-  async getPlaces(
+  async getPlacesByStatus(
     @Request() req,
     @Param() param,
   ): Promise<Place[] | undefined> {
@@ -28,7 +28,14 @@ export class PlaceController {
       status,
     };
     console.log(cond);
-    return await this.placeService.getPlaces(cond);
+    return await this.placeService.getPlacesByStatus(cond);
+  }
+
+  @Get('all')
+  async getPlaces(@Request() req): Promise<Place[] | undefined> {
+    const { userId } = req.query;
+    console.log(`userId: ${userId}`);
+    return await this.placeService.getPlaces(userId);
   }
 
   @Get('allCount')
