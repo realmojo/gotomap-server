@@ -28,6 +28,7 @@ export declare class Place {
     status: PLACE_STATUS;
     sido: string;
     sigungu: string;
-    regdate: string;
+    created: string;
+    updated: string;
 }
 export declare const PlaceSchema: import("mongoose").Schema<Document<Place, any, any>, import("mongoose").Model<Document<Place, any, any>, any, any, any>, {}, {}>;

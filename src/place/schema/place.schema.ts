@@ -61,7 +61,10 @@ export class Place {
   sigungu: string;
 
   @Prop()
-  regdate: string;
+  created: string;
+
+  @Prop()
+  updated: string;
 }
 
 export const PlaceSchema = SchemaFactory.createForClass(Place);

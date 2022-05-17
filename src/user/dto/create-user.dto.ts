@@ -11,5 +11,5 @@ export class CreateUserDto {
   readonly profileImage: string;
 
   @IsString()
-  readonly regdate: string;
+  readonly created: string;
 }

@@ -14,5 +14,6 @@ export declare class CreatePlaceDto {
     readonly status: PLACE_STATUS;
     readonly sido: string;
     readonly sigungu: string;
-    readonly regdate: string;
+    readonly created: string;
+    readonly updated: string;
 }

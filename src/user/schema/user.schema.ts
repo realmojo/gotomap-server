@@ -15,7 +15,7 @@ export class User {
   profileImage: string;
 
   @Prop()
-  regdate: string;
+  created: string;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

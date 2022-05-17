@@ -28,7 +28,7 @@ __decorate([
 __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
-], User.prototype, "regdate", void 0);
+], User.prototype, "created", void 0);
 User = __decorate([
     (0, mongoose_1.Schema)()
 ], User);

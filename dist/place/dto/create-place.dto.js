@@ -70,8 +70,12 @@ __decorate([
     __metadata("design:type", String)
 ], CreatePlaceDto.prototype, "sigungu", void 0);
 __decorate([
-    (0, class_validator_1.IsNumber)(),
+    (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
-], CreatePlaceDto.prototype, "regdate", void 0);
+], CreatePlaceDto.prototype, "created", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], CreatePlaceDto.prototype, "updated", void 0);
 exports.CreatePlaceDto = CreatePlaceDto;
 //# sourceMappingURL=create-place.dto.js.map

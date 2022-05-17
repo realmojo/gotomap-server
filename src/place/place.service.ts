@@ -16,14 +16,15 @@ export class PlaceService {
   }
 
   async getPlaces(userId: string): Promise<Place[] | undefined> {
-    return await this.placeModel.find({ userId }).sort({ regdate: -1 });
+    return await this.placeModel.find({ userId }).sort({ updated: -1 });
   }
 
   async getPlacesByStatus(cond: {
     userId: string;
     status: string;
   }): Promise<Place[] | undefined> {
-    return await this.placeModel.find(cond).sort({ regdate: -1 });
+    let sort = status === PLACE_STATUS.DONE ? { updated: -1 } : { created: -1 };
+    return await this.placeModel.find(cond).sort(sort);
   }
 
   async findOne(placeId: string, userId: string): Promise<Place | undefined> {

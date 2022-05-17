@@ -35,12 +35,8 @@ export class CreatePlaceDto {
   @IsNumber()
   readonly sigungu: string;
 
-  @IsNumber()
-  readonly regdate: string;
+  @IsString()
+  readonly created: string;
+  @IsString()
+  readonly updated: string;
 }
-
-// @Prop()
-// status: Status;
-
-// @Prop()
-// regdate: string;
