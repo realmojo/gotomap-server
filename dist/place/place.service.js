@@ -17,7 +17,7 @@ const mongoose_1 = require("mongoose");
 const common_1 = require("@nestjs/common");
 const mongoose_2 = require("@nestjs/mongoose");
 const place_schema_1 = require("./schema/place.schema");
-const moment_1 = require("moment");
+const moment = require("moment");
 let PlaceService = class PlaceService {
     constructor(placeModel) {
         this.placeModel = placeModel;
@@ -54,7 +54,7 @@ let PlaceService = class PlaceService {
     }
     async updatePlaceStatus(filter, status) {
         const set = {
-            $set: { status, update: (0, moment_1.default)().format('YYYY-MM-DD HH:mm:ss') },
+            $set: { status, updated: moment().format('YYYY-MM-DD HH:mm:ss') },
         };
         return await this.placeModel.findOneAndUpdate(filter, set, { new: true });
     }
