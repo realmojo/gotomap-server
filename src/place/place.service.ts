@@ -4,6 +4,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Place, PlaceDocument } from './schema/place.schema';
 import { CreatePlaceDto } from './dto/create-place.dto';
 import { PLACE_STATUS } from './schema/constants';
+import moment from 'moment';
 
 @Injectable()
 export class PlaceService {
@@ -62,7 +63,9 @@ export class PlaceService {
     filter: { _id: string; userId: string },
     status: PLACE_STATUS,
   ): Promise<Place | undefined> {
-    const set = { $set: { status } };
+    const set = {
+      $set: { status, update: moment().format('YYYY-MM-DD HH:mm:ss') },
+    };
     return await this.placeModel.findOneAndUpdate(filter, set, { new: true });
   }
 
