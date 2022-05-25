@@ -20,4 +20,14 @@ export class UserService {
     const createUser = new this.userModel(createUserDto);
     return createUser.save();
   }
+
+  async patchUserName(userId: string, name: string) {
+    const filter = {
+      userId,
+    };
+    const set = {
+      $set: { name },
+    };
+    return await this.userModel.findOneAndUpdate(filter, set, { new: true });
+  }
 }

@@ -32,6 +32,15 @@ let UserService = class UserService {
         const createUser = new this.userModel(createUserDto);
         return createUser.save();
     }
+    async patchUserName(userId, name) {
+        const filter = {
+            userId,
+        };
+        const set = {
+            $set: { name },
+        };
+        return await this.userModel.findOneAndUpdate(filter, set, { new: true });
+    }
 };
 UserService = __decorate([
     (0, common_1.Injectable)(),

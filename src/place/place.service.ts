@@ -24,7 +24,7 @@ export class PlaceService {
     userId: string;
     status: string;
   }): Promise<Place[] | undefined> {
-    let sort =
+    const sort =
       cond.status === PLACE_STATUS.DONE ? { updated: -1 } : { created: -1 };
     return await this.placeModel.find(cond).sort(sort);
   }

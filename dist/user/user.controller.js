@@ -22,6 +22,12 @@ let UserController = class UserController {
     async addUser(req) {
         return await this.userService.addUser(req);
     }
+    async patchUserName(body, query) {
+        const { userId } = query;
+        const { name } = body;
+        console.log(`userId: ${userId} change name: ${name}`);
+        return await this.userService.patchUserName(userId, name);
+    }
 };
 __decorate([
     (0, common_1.Post)(),
@@ -30,6 +36,14 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "addUser", null);
+__decorate([
+    (0, common_1.Post)('name'),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object]),
+    __metadata("design:returntype", Promise)
+], UserController.prototype, "patchUserName", null);
 UserController = __decorate([
     (0, common_1.Controller)('user'),
     __metadata("design:paramtypes", [user_service_1.UserService])

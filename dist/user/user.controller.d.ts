@@ -4,4 +4,5 @@ export declare class UserController {
     private readonly userService;
     constructor(userService: UserService);
     addUser(req: any): Promise<User>;
+    patchUserName(body: any, query: any): Promise<User>;
 }
