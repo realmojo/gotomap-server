@@ -1,4 +1,4 @@
-import { Controller, Post, Query, Body } from '@nestjs/common';
+import { Controller, Post, Patch, Query, Body } from '@nestjs/common';
 import { UserService } from './user.service';
 import { User } from './schema/user.schema';
 
@@ -12,7 +12,7 @@ export class UserController {
     return await this.userService.addUser(req);
   }
 
-  @Post('name')
+  @Patch('name')
   async patchUserName(@Body() body, @Query() query): Promise<User> {
     const { userId } = query;
     const { name } = body;
