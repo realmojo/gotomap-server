@@ -27,14 +27,14 @@ export class PlaceController {
       userId,
       status,
     };
-    console.log(cond);
+    console.log(`all/${status}: ${cond}`);
     return await this.placeService.getPlacesByStatus(cond);
   }
 
   @Get('all')
   async getPlaces(@Request() req): Promise<Place[] | undefined> {
     const { userId } = req.query;
-    console.log(`userId: ${userId}`);
+    console.log(`all: ${userId}`);
     return await this.placeService.getPlaces(userId);
   }
 
@@ -45,6 +45,7 @@ export class PlaceController {
     backlogCount: number;
   }> {
     const { userId } = req.query;
+    console.log(`allCount: ${userId}`);
     const { totalCount, doneCount, backlogCount } =
       await this.placeService.getPlaceCount(userId);
     return {
@@ -57,17 +58,20 @@ export class PlaceController {
   @Get(':_id')
   async getPlace(@Request() req): Promise<Place | undefined> {
     const { _id } = req.params;
+    console.log(`getPlace: ${_id}`);
     return await this.placeService.getPlace(_id);
   }
 
   @Post()
   async addPlace(@Body() req): Promise<Place | undefined> {
+    console.log(`addPlace`);
     return await this.placeService.addPlace(req);
   }
 
   @Delete(':_id')
   async removePlace(@Request() req): Promise<Place | undefined> {
     const { _id } = req.params;
+    console.log(`removePlace: ${_id}`);
     return await this.placeService.removePlace(_id);
   }
 
@@ -75,6 +79,7 @@ export class PlaceController {
   async updatePlaceStatus(@Request() req): Promise<Place | undefined> {
     const { _id } = req.params;
     const { status, userId } = req.query;
+    console.log(`id/${status}: ${_id}`);
     const filter = {
       _id,
       userId,
@@ -95,6 +100,7 @@ export class PlaceController {
       _id,
       userId,
     };
+    console.log(`id/memo: ${_id}/${memo}`);
     return await this.placeService.updatePlaceMemo(filter, memo);
   }
 }
