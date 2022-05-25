@@ -43,12 +43,14 @@ export class MapController {
   async getSearchPlace(@Param() param, @Query() query): Promise<any> {
     const { text } = param;
     const { latitude, longitude } = query;
+    console.log(`map: ${text}`);
     return await getSearchPlaceByNaver(latitude, longitude, text);
   }
 
   @Get('search/:id')
   async getPlaceInfo(@Param() param): Promise<any> {
     const { id } = param;
+    console.log(`map Search: ${id}`);
     return await getPlaceInfoByNaver(id);
   }
 }

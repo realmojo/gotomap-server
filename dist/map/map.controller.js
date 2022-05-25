@@ -44,10 +44,12 @@ let MapController = class MapController {
     async getSearchPlace(param, query) {
         const { text } = param;
         const { latitude, longitude } = query;
+        console.log(`map: ${text}`);
         return await getSearchPlaceByNaver(latitude, longitude, text);
     }
     async getPlaceInfo(param) {
         const { id } = param;
+        console.log(`map Search: ${id}`);
         return await getPlaceInfoByNaver(id);
     }
 };

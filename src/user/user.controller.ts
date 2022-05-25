@@ -8,6 +8,7 @@ export class UserController {
 
   @Post()
   async addUser(@Body() req): Promise<User> {
+    console.log(`adduser`);
     return await this.userService.addUser(req);
   }
 }

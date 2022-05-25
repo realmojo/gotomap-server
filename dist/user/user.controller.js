@@ -20,6 +20,7 @@ let UserController = class UserController {
         this.userService = userService;
     }
     async addUser(req) {
+        console.log(`adduser`);
         return await this.userService.addUser(req);
     }
 };

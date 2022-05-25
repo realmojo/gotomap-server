@@ -26,16 +26,17 @@ let PlaceController = class PlaceController {
             userId,
             status,
         };
-        console.log(cond);
+        console.log(`all/${status}: ${cond}`);
         return await this.placeService.getPlacesByStatus(cond);
     }
     async getPlaces(req) {
         const { userId } = req.query;
-        console.log(`userId: ${userId}`);
+        console.log(`all: ${userId}`);
         return await this.placeService.getPlaces(userId);
     }
     async getPlaceCount(req) {
         const { userId } = req.query;
+        console.log(`allCount: ${userId}`);
         const { totalCount, doneCount, backlogCount } = await this.placeService.getPlaceCount(userId);
         return {
             totalCount,
@@ -45,18 +46,22 @@ let PlaceController = class PlaceController {
     }
     async getPlace(req) {
         const { _id } = req.params;
+        console.log(`getPlace: ${_id}`);
         return await this.placeService.getPlace(_id);
     }
     async addPlace(req) {
+        console.log(`addPlace`);
         return await this.placeService.addPlace(req);
     }
     async removePlace(req) {
         const { _id } = req.params;
+        console.log(`removePlace: ${_id}`);
         return await this.placeService.removePlace(_id);
     }
     async updatePlaceStatus(req) {
         const { _id } = req.params;
         const { status, userId } = req.query;
+        console.log(`id/${status}: ${_id}`);
         const filter = {
             _id,
             userId,
@@ -71,6 +76,7 @@ let PlaceController = class PlaceController {
             _id,
             userId,
         };
+        console.log(`id/memo: ${_id}/${memo}`);
         return await this.placeService.updatePlaceMemo(filter, memo);
     }
 };
