@@ -14,7 +14,7 @@ export declare class UserService {
     constructor(userModel: Model<UserDocument>);
     findOne(id: string): Promise<User | undefined>;
     addUser(createUserDto: CreateUserDto): Promise<User | undefined>;
-    patchUserName(userId: string, name: string): Promise<User & import("mongoose").Document<any, any, any> & {
+    patchUserName(id: string, name: string): Promise<User & import("mongoose").Document<any, any, any> & {
         _id: any;
     }>;
 }

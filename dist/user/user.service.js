@@ -32,9 +32,9 @@ let UserService = class UserService {
         const createUser = new this.userModel(createUserDto);
         return createUser.save();
     }
-    async patchUserName(userId, name) {
+    async patchUserName(id, name) {
         const filter = {
-            userId,
+            id,
         };
         const set = {
             $set: { name },

@@ -24,10 +24,10 @@ let UserController = class UserController {
         return await this.userService.addUser(req);
     }
     async patchUserName(body, query) {
-        const { userId } = query;
+        const { userId: id } = query;
         const { name } = body;
-        console.log(`userId: ${userId} change name: ${name}`);
-        return await this.userService.patchUserName(userId, name);
+        console.log(`userId: ${id} change name: ${name}`);
+        return await this.userService.patchUserName(id, name);
     }
 };
 __decorate([

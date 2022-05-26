@@ -14,9 +14,9 @@ export class UserController {
 
   @Patch('name')
   async patchUserName(@Body() body, @Query() query): Promise<User> {
-    const { userId } = query;
+    const { userId: id } = query;
     const { name } = body;
-    console.log(`userId: ${userId} change name: ${name}`);
-    return await this.userService.patchUserName(userId, name);
+    console.log(`userId: ${id} change name: ${name}`);
+    return await this.userService.patchUserName(id, name);
   }
 }

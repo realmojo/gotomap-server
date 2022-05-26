@@ -21,9 +21,9 @@ export class UserService {
     return createUser.save();
   }
 
-  async patchUserName(userId: string, name: string) {
+  async patchUserName(id: string, name: string) {
     const filter = {
-      userId,
+      id,
     };
     const set = {
       $set: { name },
